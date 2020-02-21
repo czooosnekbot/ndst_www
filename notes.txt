@@ -1,0 +1,1 @@
+btn btn-primary btn-main btn-lg >> class do aktywnego przycisku wyboru klasy 
