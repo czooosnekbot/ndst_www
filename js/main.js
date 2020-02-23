@@ -27,6 +27,8 @@ containers = {
     secondClassSubjects: document.querySelector('#second-class'),
     allClassSubjects: document.querySelectorAll('.subjects'),
     allMaterials: document.querySelectorAll('.materials'),
+    allContent: document.querySelector('.content'),
+    mobileNavBarCollapsedInfo: document.querySelector('.nav-bar-collapsed-info'),
     subjects: {
         first: {
             aso: document.querySelector('#c-1-aso'),
@@ -44,6 +46,12 @@ containers = {
             books: document.querySelector('#c-2-books'),
         },
     },
+}
+colors = {
+    gray1: '#061D24',
+    gray2: '#303440',
+    gray3: '#303C40',
+    gray4: '#283635',
 }
 
 const showSubjects = function () {
@@ -84,42 +92,61 @@ const showMaterials = function () {
                 elem.className = 'btn btn-secondary btn-other mr-2 btn-lg button-subject'
             })
             elem.className = 'btn btn-primary btn-main btn-lg mr-2 btn-lg button-subject'
+            document.querySelector('.nav-bar').className += ' nav-bar-subject-choosed'
+            containers.mobileNavBarCollapsedInfo.style.display = 'flex'
+            containers.allContent.style.display = 'block'
         })
+    })
+
+    containers.mobileNavBarCollapsedInfo.addEventListener('click', function () {
+        document.querySelector('.nav-bar').className = 'col-12 col-md-3 h-100 nav-bar'
+        containers.mobileNavBarCollapsedInfo.style = 'display: none !important;'
     })
     
     buttons.subjects.first.aso.addEventListener('click', function () {
         containers.subjects.first.aso.style.display = 'flex'
+        containers.allContent.style.background = colors.gray1
     })
     buttons.subjects.first.eutk.addEventListener('click', function () {
         containers.subjects.first.eutk.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
     })
     buttons.subjects.first.utk.addEventListener('click', function () {
         containers.subjects.first.utk.style.display = 'flex'
+        containers.allContent.style.background = colors.gray3
     })
     buttons.subjects.first.math.addEventListener('click', function () {
         containers.subjects.first.math.style.display = 'flex'
+        containers.allContent.style.background = colors.gray4
     })
 
     buttons.subjects.second.aso.addEventListener('click', function () {
         containers.subjects.second.aso.style.display = 'flex'
+        containers.allContent.style.background = colors.gray3
     })
     buttons.subjects.second.eutk.addEventListener('click', function () {
         containers.subjects.second.eutk.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
     })
     buttons.subjects.second.lsk.addEventListener('click', function () {
         containers.subjects.second.lsk.style.display = 'flex'
+        containers.allContent.style.background = colors.gray4
     })
     buttons.subjects.second.dg.addEventListener('click', function () {
         containers.subjects.second.dg.style.display = 'flex'
+        containers.allContent.style.background = colors.gray1
     })
     buttons.subjects.second.wiai.addEventListener('click', function () {
         containers.subjects.second.wiai.style.display = 'flex'
+        containers.allContent.style.background = colors.gray3
     })
     buttons.subjects.second.math.addEventListener('click', function () {
         containers.subjects.second.math.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
     })
     buttons.subjects.second.books.addEventListener('click', function () {
         containers.subjects.second.books.style.display = 'flex'
+        containers.allContent.style.background = colors.gray4
     })
 
 }
