@@ -32,6 +32,7 @@ containers = {
     allMaterials: document.querySelectorAll('.materials'),
     allContent: document.querySelector('.content'),
     mobileNavBarCollapsedInfo: document.querySelector('.nav-bar-collapsed-info'),
+	pdfViewer: document.querySelector('#pdf-viewer'),
     subjects: {
         first: {
             aso: document.querySelector('#c-1-aso'),
@@ -162,6 +163,8 @@ const pdfShow = function () {
             const pdfContianer = document.querySelector('.pdfobject')
             if (elem.id != "") {
                 pdfContianer.src = `${CDNaddress}${elem.id}`
+				containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
+				containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
             }
         })
     })
