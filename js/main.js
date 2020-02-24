@@ -1,8 +1,11 @@
+const CDNaddress = 'https://cdn.czooosnek.cloud/files/'
+
 buttons = {
     firstClass: document.querySelector('#first-class-button'),
     secondClass: document.querySelector('#second-class-button'),
     allClassSelectButtons: document.querySelectorAll('.class-select'),
     allSubjectsButtons: document.querySelectorAll('.button-subject'),
+    allMaterialsButtons: document.querySelectorAll('.btn-material'),
     subjects: {
         first: {
             aso: document.querySelector('#b-1-aso'),
@@ -151,3 +154,16 @@ const showMaterials = function () {
 
 }
 showMaterials()
+
+const pdfShow = function () {
+    const viewable = document.querySelectorAll('.viewable')
+    viewable.forEach(function (elem) {
+        elem.addEventListener('click', function () {
+            const pdfContianer = document.querySelector('.pdfobject')
+            if (elem.id != "") {
+                pdfContianer.src = `${CDNaddress}${elem.id}`
+            }
+        })
+    })
+}
+pdfShow()
