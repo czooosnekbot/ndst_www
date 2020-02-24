@@ -6,6 +6,8 @@ buttons = {
     allClassSelectButtons: document.querySelectorAll('.class-select'),
     allSubjectsButtons: document.querySelectorAll('.button-subject'),
     allMaterialsButtons: document.querySelectorAll('.btn-material'),
+    downloadButton: document.querySelector('#download-button'),
+    viewableMaterials: document.querySelectorAll('.viewable'),
     subjects: {
         first: {
             aso: document.querySelector('#b-1-aso'),
@@ -152,7 +154,6 @@ const showMaterials = function () {
         containers.subjects.second.books.style.display = 'flex'
         containers.allContent.style.background = colors.gray4
     })
-
 }
 showMaterials()
 
@@ -163,6 +164,9 @@ const pdfShow = function () {
             const pdfContianer = document.querySelector('.pdfobject')
             if (elem.id != "") {
                 pdfContianer.src = `${CDNaddress}${elem.id}`
+                // buttons.downloadButton.style = 'display: block !important;'
+                // buttons.downloadButton.download = elem.id
+                // buttons.downloadButton.href = `${CDNaddress}${elem.id}`
 				containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
 				containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
             }
@@ -170,3 +174,15 @@ const pdfShow = function () {
     })
 }
 pdfShow()
+
+const generateLinksForMobile = function () {
+    const viewable = document.querySelectorAll('.viewable')
+    if ($(window).width() < 700){
+        viewable.forEach(function (elem) {
+            if (elem.id != "") {
+                elem.href = `${CDNaddress}${elem.id}`
+            }
+        })
+    }
+}
+generateLinksForMobile()
