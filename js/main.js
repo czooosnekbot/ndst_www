@@ -167,7 +167,7 @@ const pdfShow = function () {
                 // buttons.downloadButton.style = 'display: block !important;'
                 // buttons.downloadButton.download = elem.id
                 // buttons.downloadButton.href = `${CDNaddress}${elem.id}`
-				containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
+                containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
 				containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
             }
         })

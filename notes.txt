@@ -1,9 +1,0 @@
-btn btn-primary btn-main btn-lg >> class do aktywnego przycisku wyboru klasy 
-
- aso: document.querySelector('#c-2-aso'),
-            eutk: document.querySelector('#c-2-eutk'),
-            lsk: document.querySelector('#c-2-lsk'),
-            dg: document.querySelector('#c-2-dg'),
-            wiai: document.querySelector('#c-2-wiai'),
-            math: document.querySelector('#c-2-math'),
-            books: document.querySelector('#c-2-books'),
