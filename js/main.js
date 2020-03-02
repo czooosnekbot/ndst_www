@@ -8,6 +8,7 @@ buttons = {
     allMaterialsButtons: document.querySelectorAll('.btn-material'),
     downloadButton: document.querySelector('#download-button'),
     viewableMaterials: document.querySelectorAll('.viewable'),
+    resizeButton: document.querySelector('#resizeButton'),
     subjects: {
         first: {
             aso: document.querySelector('#b-1-aso'),
@@ -23,6 +24,8 @@ buttons = {
             wiai: document.querySelector('#b-2-wiai'),
             math: document.querySelector('#b-2-math'),
             books: document.querySelector('#b-2-books'),
+            jang: document.querySelector('#b-2-jang'),
+            jpol: document.querySelector('#b-2-jpol'),
         },
     },
 }
@@ -50,6 +53,8 @@ containers = {
             wiai: document.querySelector('#c-2-wiai'),
             math: document.querySelector('#c-2-math'),
             books: document.querySelector('#c-2-books'),
+            jang: document.querySelector('#c-2-jang'),
+            jpol: document.querySelector('#c-2-jpol'),
         },
     },
 }
@@ -154,21 +159,34 @@ const showMaterials = function () {
         containers.subjects.second.books.style.display = 'flex'
         containers.allContent.style.background = colors.gray4
     })
+	buttons.subjects.second.jang.addEventListener('click', function () {
+        containers.subjects.second.jang.style.display = 'flex'
+        containers.allContent.style.background = colors.gray3
+    })
+    buttons.subjects.second.jpol.addEventListener('click', function () {
+        containers.subjects.second.jpol.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
+    })
 }
 showMaterials()
 
 const pdfShow = function () {
     const viewable = document.querySelectorAll('.viewable')
+    const viewType = '#view=FitH'
     viewable.forEach(function (elem) {
         elem.addEventListener('click', function () {
             const pdfContianer = document.querySelector('.pdfobject')
             if (elem.id != "") {
-                pdfContianer.src = `${CDNaddress}${elem.id}`
+                pdfContianer.src = `${CDNaddress}${elem.id}${viewType}`
                 // buttons.downloadButton.style = 'display: block !important;'
                 // buttons.downloadButton.download = elem.id
                 // buttons.downloadButton.href = `${CDNaddress}${elem.id}`
                 containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
-				containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
+                containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
+                if ($(window).width() > 700) {
+                    buttons.resizeButton.className = 'btn btn-danger btn-lg'
+                    buttons.resizeButton.style = `background: ${containers.allContent.style.background} !important;`
+                }    
             }
         })
     })
@@ -177,7 +195,7 @@ pdfShow()
 
 const generateLinksForMobile = function () {
     const viewable = document.querySelectorAll('.viewable')
-    if ($(window).width() < 700){
+    if ($(window).width() < 700) {
         viewable.forEach(function (elem) {
             if (elem.id != "") {
                 elem.href = `${CDNaddress}${elem.id}`
@@ -186,3 +204,24 @@ const generateLinksForMobile = function () {
     }
 }
 generateLinksForMobile()
+
+const resizePdfView = function () {
+    const min = function () {
+        buttons.resizeButton.addEventListener('click', function (e) {
+            containers.allContent.className = 'col-12 col-md-6 h-100 px-md-3 content'
+            containers.pdfViewer.className = 'col-0 col-md-3 h-100 pdfobject-container'
+            e.target.innerHTML = '<i class="mr-1 fas fa-angle-double-left"></i> Rozszerz'
+            max()
+        })
+    }
+    const max = function () {
+        buttons.resizeButton.addEventListener('click', function (e) {
+            containers.allContent.className = 'col-0 col-md-0 d-none'
+            containers.pdfViewer.className = 'col-0 col-md-9 h-100 pdfobject-container'
+            e.target.innerHTML = '<i class="mr-1 fas fa-angle-double-right"></i> Powrót'
+            min()
+        })
+    }
+    max()
+}
+resizePdfView()
