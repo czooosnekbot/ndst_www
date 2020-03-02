@@ -225,3 +225,11 @@ const resizePdfView = function () {
     max()
 }
 resizePdfView()
+
+const showTipInfo = function () {
+    setTimeout(function () {
+        console.log('caio')
+        $("#infoModal").modal('toggle')
+    }, 10000)
+}
+showTipInfo()
