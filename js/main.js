@@ -26,6 +26,7 @@ buttons = {
             books: document.querySelector('#b-2-books'),
             jang: document.querySelector('#b-2-jang'),
             jpol: document.querySelector('#b-2-jpol'),
+            jhisz: document.querySelector('#b-2-jhisz'),
         },
     },
 }
@@ -55,6 +56,7 @@ containers = {
             books: document.querySelector('#c-2-books'),
             jang: document.querySelector('#c-2-jang'),
             jpol: document.querySelector('#c-2-jpol'),
+            jhisz: document.querySelector('#c-2-jhisz'),
         },
     },
 }
@@ -165,6 +167,10 @@ const showMaterials = function () {
     })
     buttons.subjects.second.jpol.addEventListener('click', function () {
         containers.subjects.second.jpol.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
+    })
+    buttons.subjects.second.jhisz.addEventListener('click', function () {
+        containers.subjects.second.jhisz.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
 }
