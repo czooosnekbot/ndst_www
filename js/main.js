@@ -9,24 +9,25 @@ buttons = {
     downloadButton: document.querySelector('#download-button'),
     viewableMaterials: document.querySelectorAll('.viewable'),
     resizeButton: document.querySelector('#resizeButton'),
+    counter: document.querySelector('title'),
     subjects: {
         first: {
-            aso: document.querySelector('#b-1-aso'),
-            eutk: document.querySelector('#b-1-eutk'),
-            utk: document.querySelector('#b-1-utk'),
-            math: document.querySelector('#b-1-math'),
+            aso1: document.querySelector('#b-1-aso'),
+            eutk1: document.querySelector('#b-1-eutk'),
+            utk1: document.querySelector('#b-1-utk'),
+            math1: document.querySelector('#b-1-math'),
         },
         second: {
-            aso: document.querySelector('#b-2-aso'),
-            eutk: document.querySelector('#b-2-eutk'),
-            lsk: document.querySelector('#b-2-lsk'),
-            dg: document.querySelector('#b-2-dg'),
-            wiai: document.querySelector('#b-2-wiai'),
-            math: document.querySelector('#b-2-math'),
-            books: document.querySelector('#b-2-books'),
-            jang: document.querySelector('#b-2-jang'),
-            jpol: document.querySelector('#b-2-jpol'),
-            jhisz: document.querySelector('#b-2-jhisz'),
+            aso2: document.querySelector('#b-2-aso'),
+            eutk2: document.querySelector('#b-2-eutk'),
+            lsk2: document.querySelector('#b-2-lsk'),
+            dg2: document.querySelector('#b-2-dg'),
+            wiai2: document.querySelector('#b-2-wiai'),
+            math2: document.querySelector('#b-2-math'),
+            books2: document.querySelector('#b-2-books'),
+            jang2: document.querySelector('#b-2-jang'),
+            jpol2: document.querySelector('#b-2-jpol'),
+            jhisz2: document.querySelector('#b-2-jhisz'),
         },
     },
 }
@@ -41,25 +42,60 @@ containers = {
 	pdfViewer: document.querySelector('#pdf-viewer'),
     subjects: {
         first: {
-            aso: document.querySelector('#c-1-aso'),
-            eutk: document.querySelector('#c-1-eutk'),
-            utk: document.querySelector('#c-1-utk'),
-            math: document.querySelector('#c-1-math'),
+            aso1: document.querySelector('#c-1-aso'),
+            eutk1: document.querySelector('#c-1-eutk'),
+            utk1: document.querySelector('#c-1-utk'),
+            math1: document.querySelector('#c-1-math'),
         },
         second: {
-            aso: document.querySelector('#c-2-aso'),
-            eutk: document.querySelector('#c-2-eutk'),
-            lsk: document.querySelector('#c-2-lsk'),
-            dg: document.querySelector('#c-2-dg'),
-            wiai: document.querySelector('#c-2-wiai'),
-            math: document.querySelector('#c-2-math'),
-            books: document.querySelector('#c-2-books'),
-            jang: document.querySelector('#c-2-jang'),
-            jpol: document.querySelector('#c-2-jpol'),
-            jhisz: document.querySelector('#c-2-jhisz'),
+            aso2: document.querySelector('#c-2-aso'),
+            eutk2: document.querySelector('#c-2-eutk'),
+            lsk2: document.querySelector('#c-2-lsk'),
+            dg2: document.querySelector('#c-2-dg'),
+            wiai2: document.querySelector('#c-2-wiai'),
+            math2: document.querySelector('#c-2-math'),
+            books2: document.querySelector('#c-2-books'),
+            jang2: document.querySelector('#c-2-jang'),
+            jpol2: document.querySelector('#c-2-jpol'),
+            jhisz2: document.querySelector('#c-2-jhisz'),
         },
     },
 }
+
+const fetchMaterials = function (which, where) {
+    which.forEach(function (elem) {
+        const newButton = document.createElement('a')
+        newButton.textContent = elem.title
+        if (elem.filetype === 'pdf') {
+            newButton.id = elem.filename
+        } else if (elem.filetype === 'picture') {
+            newButton.href = `${CDNaddress}${elem.filename}`
+            newButton.setAttribute("data-lightbox", elem.filename)
+            newButton.setAttribute("data-title", elem.description)
+        } else if (elem.filetype === 'web') {
+            newButton.href = elem.filename
+            newButton.target = '_blank'
+        }
+        newButton.className = 'btn btn-material viewable'
+        where.appendChild(newButton)
+    })
+    console.log(`Imported ${which.length} material/s succesfully.`)
+}
+
+fetchMaterials(ndst.content.utk1, containers.subjects.first.utk1)
+fetchMaterials(ndst.content.aso1, containers.subjects.first.aso1)
+fetchMaterials(ndst.content.aso2, containers.subjects.second.aso2)
+fetchMaterials(ndst.content.eutk1, containers.subjects.first.eutk1)
+fetchMaterials(ndst.content.eutk2, containers.subjects.second.eutk2)
+fetchMaterials(ndst.content.math1, containers.subjects.first.math1)
+fetchMaterials(ndst.content.math2, containers.subjects.second.math2)
+fetchMaterials(ndst.content.dg2, containers.subjects.second.dg2)
+fetchMaterials(ndst.content.wiai2, containers.subjects.second.wiai2)
+fetchMaterials(ndst.content.lsk2, containers.subjects.second.lsk2)
+fetchMaterials(ndst.content.jhis2, containers.subjects.second.jhisz2)
+fetchMaterials(ndst.content.jang2, containers.subjects.second.jang2)
+fetchMaterials(ndst.content.jpol2, containers.subjects.second.jpol2)
+
 colors = {
     gray1: '#061D24',
     gray2: '#303440',
@@ -105,7 +141,7 @@ const showMaterials = function () {
                 elem.className = 'btn btn-secondary btn-other mr-2 btn-lg button-subject'
             })
             elem.className = 'btn btn-primary btn-main btn-lg mr-2 btn-lg button-subject'
-            document.querySelector('.nav-bar').className += ' nav-bar-subject-choosed'
+            document.querySelector('.nav-bar').className = 'col-12 col-md-3 h-100 nav-bar nav-bar-subject-choosed'
             containers.mobileNavBarCollapsedInfo.style.display = 'flex'
             containers.allContent.style.display = 'block'
         })
@@ -116,61 +152,61 @@ const showMaterials = function () {
         containers.mobileNavBarCollapsedInfo.style = 'display: none !important;'
     })
     
-    buttons.subjects.first.aso.addEventListener('click', function () {
-        containers.subjects.first.aso.style.display = 'flex'
+    buttons.subjects.first.aso1.addEventListener('click', function () {
+        containers.subjects.first.aso1.style.display = 'flex'
         containers.allContent.style.background = colors.gray1
     })
-    buttons.subjects.first.eutk.addEventListener('click', function () {
-        containers.subjects.first.eutk.style.display = 'flex'
+    buttons.subjects.first.eutk1.addEventListener('click', function () {
+        containers.subjects.first.eutk1.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
-    buttons.subjects.first.utk.addEventListener('click', function () {
-        containers.subjects.first.utk.style.display = 'flex'
+    buttons.subjects.first.utk1.addEventListener('click', function () {
+        containers.subjects.first.utk1.style.display = 'flex'
         containers.allContent.style.background = colors.gray3
     })
-    buttons.subjects.first.math.addEventListener('click', function () {
-        containers.subjects.first.math.style.display = 'flex'
+    buttons.subjects.first.math1.addEventListener('click', function () {
+        containers.subjects.first.math1.style.display = 'flex'
         containers.allContent.style.background = colors.gray4
     })
 
-    buttons.subjects.second.aso.addEventListener('click', function () {
-        containers.subjects.second.aso.style.display = 'flex'
+    buttons.subjects.second.aso2.addEventListener('click', function () {
+        containers.subjects.second.aso2.style.display = 'flex'
         containers.allContent.style.background = colors.gray3
     })
-    buttons.subjects.second.eutk.addEventListener('click', function () {
-        containers.subjects.second.eutk.style.display = 'flex'
+    buttons.subjects.second.eutk2.addEventListener('click', function () {
+        containers.subjects.second.eutk2.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
-    buttons.subjects.second.lsk.addEventListener('click', function () {
-        containers.subjects.second.lsk.style.display = 'flex'
+    buttons.subjects.second.lsk2.addEventListener('click', function () {
+        containers.subjects.second.lsk2.style.display = 'flex'
         containers.allContent.style.background = colors.gray4
     })
-    buttons.subjects.second.dg.addEventListener('click', function () {
-        containers.subjects.second.dg.style.display = 'flex'
+    buttons.subjects.second.dg2.addEventListener('click', function () {
+        containers.subjects.second.dg2.style.display = 'flex'
         containers.allContent.style.background = colors.gray1
     })
-    buttons.subjects.second.wiai.addEventListener('click', function () {
-        containers.subjects.second.wiai.style.display = 'flex'
+    buttons.subjects.second.wiai2.addEventListener('click', function () {
+        containers.subjects.second.wiai2.style.display = 'flex'
         containers.allContent.style.background = colors.gray3
     })
-    buttons.subjects.second.math.addEventListener('click', function () {
-        containers.subjects.second.math.style.display = 'flex'
+    buttons.subjects.second.math2.addEventListener('click', function () {
+        containers.subjects.second.math2.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
-    buttons.subjects.second.books.addEventListener('click', function () {
-        containers.subjects.second.books.style.display = 'flex'
-        containers.allContent.style.background = colors.gray4
-    })
-	buttons.subjects.second.jang.addEventListener('click', function () {
-        containers.subjects.second.jang.style.display = 'flex'
+    // buttons.subjects.second.books2.addEventListener('click', function () {
+    //     containers.subjects.second.books2.style.display = 'flex'
+    //     containers.allContent.style.background = colors.gray4
+    // })
+	buttons.subjects.second.jang2.addEventListener('click', function () {
+        containers.subjects.second.jang2.style.display = 'flex'
         containers.allContent.style.background = colors.gray3
     })
-    buttons.subjects.second.jpol.addEventListener('click', function () {
-        containers.subjects.second.jpol.style.display = 'flex'
+    buttons.subjects.second.jpol2.addEventListener('click', function () {
+        containers.subjects.second.jpol2.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
-    buttons.subjects.second.jhisz.addEventListener('click', function () {
-        containers.subjects.second.jhisz.style.display = 'flex'
+    buttons.subjects.second.jhisz2.addEventListener('click', function () {
+        containers.subjects.second.jhisz2.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
 }
