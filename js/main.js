@@ -19,6 +19,7 @@ buttons = {
         },
         second: {
             aso2: document.querySelector('#b-2-aso'),
+            so2: document.querySelector('#b-2-so'),
             eutk2: document.querySelector('#b-2-eutk'),
             lsk2: document.querySelector('#b-2-lsk'),
             dg2: document.querySelector('#b-2-dg'),
@@ -49,6 +50,7 @@ containers = {
         },
         second: {
             aso2: document.querySelector('#c-2-aso'),
+            so2: document.querySelector('#c-2-so'),
             eutk2: document.querySelector('#c-2-eutk'),
             lsk2: document.querySelector('#c-2-lsk'),
             dg2: document.querySelector('#c-2-dg'),
@@ -85,6 +87,7 @@ const fetchMaterials = function (which, where) {
 fetchMaterials(ndst.content.utk1, containers.subjects.first.utk1)
 fetchMaterials(ndst.content.aso1, containers.subjects.first.aso1)
 fetchMaterials(ndst.content.aso2, containers.subjects.second.aso2)
+fetchMaterials(ndst.content.so2, containers.subjects.second.so2)
 fetchMaterials(ndst.content.eutk1, containers.subjects.first.eutk1)
 fetchMaterials(ndst.content.eutk2, containers.subjects.second.eutk2)
 fetchMaterials(ndst.content.math1, containers.subjects.first.math1)
@@ -97,10 +100,10 @@ fetchMaterials(ndst.content.jang2, containers.subjects.second.jang2)
 fetchMaterials(ndst.content.jpol2, containers.subjects.second.jpol2)
 
 colors = {
-    gray1: '#061D24',
-    gray2: '#303440',
-    gray3: '#303C40',
-    gray4: '#283635',
+    gray1: '#37366B',
+    gray2: '#3B4975',
+    gray3: '#3B6775',
+    gray4: '#366B6A',
 }
 
 const showSubjects = function () {
@@ -207,6 +210,10 @@ const showMaterials = function () {
     })
     buttons.subjects.second.jhisz2.addEventListener('click', function () {
         containers.subjects.second.jhisz2.style.display = 'flex'
+        containers.allContent.style.background = colors.gray2
+    })
+    buttons.subjects.second.so2.addEventListener('click', function () {
+        containers.subjects.second.so2.style.display = 'flex'
         containers.allContent.style.background = colors.gray2
     })
 }
