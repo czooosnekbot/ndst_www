@@ -9,5 +9,10 @@
 
 </script>
 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+</style>
+
 <Header {data} />
 <Subjects {data} />

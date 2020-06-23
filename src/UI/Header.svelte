@@ -1,12 +1,18 @@
 <script>
     let username = localStorage.getItem('name');
-    let selectedToPreview;
-    $: selectedToPreview;
+    let filenameSelectedToPreview;
+    $: filenameSelectedToPreview;
+    let titleSelectedToPreview;
+    $: titleSelectedToPreview;
+    const hours = new Date().getHours()
+    const isDay = hours > 6 && hours < 20
+    const isEvening = hours >= 20 && hours < 23
     export let data;
     import Viewer from '../Tools/Viewer.svelte'
 
     function getPreview(e) {
-        selectedToPreview = e.target.id
+        filenameSelectedToPreview = e.target.id
+        titleSelectedToPreview = document.getElementById(`${e.target.id}--title`).textContent
     }
 </script>
 
@@ -42,9 +48,15 @@
 <header class="d-flex flex-column justify-content-center align-items-center">
     <h1 class="mt-3 mt-md-5 mb-3 text-center">
         {#if username}
+            {#if isDay}
             Dzień dobry, {username}!
+            {:else if isEvening}
+            Dobry wieczór, {username}!
             {:else}
-            Cześć!
+            Już noc, {username}!
+            {/if}
+                {:else}
+                Witaj, przyjacielu!
         {/if}
     </h1>
     <p class="text-center">Dobrze Cię widzieć. Zobacz ostatnio dodane materiały.</p>
@@ -60,12 +72,13 @@
                             <strong class="mr-auto m-0">{material.title}</strong>
                         {/if}
                         <div class="d-flex">
+                            <span id="{material.filename}--title" class="d-none">{material.title}</span>
                             {#if subject.fullname.length > 17}
                                 <span class="m-0 p-0 mr-1 subject--name">{subject.fullname.slice(0,17).trim()}...</span>
                                 {:else}
                                 <span class="m-0 p-0 mr-1 subject--name">{subject.fullname}</span>
                             {/if}
-                            <span on:click={getPreview} id="{material.filename}" style="cursor: pointer" class="badge badge-info cursor-pointer">Zobacz</span>
+                            <span on:click={getPreview} id="{material.filename}" style="cursor: pointer" class="badge badge-info cursor-pointer" data-toggle="modal" data-target="#previewModal">Zobacz</span>
                         </div>
                     </div>
                     {/if}
@@ -75,4 +88,4 @@
     </div>
 </header>
 
-<Viewer {selectedToPreview} />
+<Viewer {filenameSelectedToPreview} {titleSelectedToPreview} />
