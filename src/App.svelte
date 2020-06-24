@@ -1,6 +1,7 @@
 <script>
     import Header from './UI/Header.svelte';
     import Subjects from './UI/Subjects.svelte';
+    import NameSaver from './Tools/NameSaver.svelte'
 
     let data;
     fetch('http://4u.czooosnek.cloud:81/ndst')
@@ -16,3 +17,4 @@
 
 <Header {data} />
 <Subjects {data} />
+<NameSaver />

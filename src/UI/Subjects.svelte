@@ -1,5 +1,15 @@
 <script>
+    let filenameSelectedToPreview;
+    $: filenameSelectedToPreview;
+    let titleSelectedToPreview;
+    $: titleSelectedToPreview;
     export let data;
+    import Viewer from '../Tools/Viewer.svelte'
+
+    function getPreview(e) {
+        filenameSelectedToPreview = e.target.id
+        titleSelectedToPreview = document.getElementById(`${e.target.id}--title`).textContent
+    }
 </script>
 
 <style>
@@ -14,14 +24,24 @@
         font-size: 6rem;
         border-bottom: .3rem solid white;
     }
-    h2 {
+    .h1 {
         font-family: 'Podkova', serif;
     }
-    h3, span, p, a {
+    p {
         font-family: 'Asap', sans-serif;
+    }
+    nav {
+        background: #2E4242;
     }
 </style>
 
-<main class="">
+<main class="row">
+    <nav class="col-3">
+       
+    </nav>
+    <div class="col-9">
     
+    </div>
 </main>
+
+<Viewer {filenameSelectedToPreview} {titleSelectedToPreview} />

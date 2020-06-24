@@ -3,6 +3,16 @@
     $: filenameSelectedToPreview;
     export let titleSelectedToPreview;
     $: titleSelectedToPreview;
+
+    function copyUrl(e) {
+      navigator.clipboard.writeText(`https://cdn.czooosnek.cloud/files/${filenameSelectedToPreview}`)
+      e.target.className = 'badge badge-success'
+      e.target.textContent = 'Skopiowano!'
+      setTimeout(() => {
+        e.target.className = 'badge badge-info'
+        e.target.textContent = 'Kopiuj link'
+      }, 500)
+    }
 </script>
 
 <style>
@@ -34,7 +44,7 @@
           <small class="font-weight-bold">{titleSelectedToPreview}</small>
           <div class="d-flex">
             <small class="mr-1">{filenameSelectedToPreview}</small>
-            <i class="fas fa-file-download" onclick="window.open('https://cdn.czooosnek.cloud/files/{filenameSelectedToPreview}')"></i>
+            <span on:click={copyUrl} style="cursor: pointer;" class="badge badge-info">Kopiuj link</span>
           </div>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
