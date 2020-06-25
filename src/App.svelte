@@ -1,7 +1,5 @@
 <script>
-    import Header from './UI/Header.svelte';
-    import Subjects from './UI/Subjects.svelte';
-    import NameSaver from './Tools/NameSaver.svelte'
+    import Body from './Body.svelte';
 
     let data;
     fetch('http://4u.czooosnek.cloud:81/ndst')
@@ -15,6 +13,4 @@
     @import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
 </style>
 
-<Header {data} />
-<Subjects {data} />
-<NameSaver />
+<Body {data} />
