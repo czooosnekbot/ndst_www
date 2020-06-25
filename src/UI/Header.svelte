@@ -12,7 +12,7 @@
 
   export let data;
   import Viewer from "../Tools/Viewer.svelte";
-  import Subjects from '../UI/Subjects.svelte';
+  import Subjects from "../UI/Subjects.svelte";
 
   function getPreview(e) {
     filenameSelectedToPreview = e.target.id;
@@ -23,7 +23,7 @@
   function collapseHeader(e) {
     const header = document.querySelector(".header");
     const headerSmall = document.querySelector(".header--collapsed");
-    const subjects = document.querySelector('#subjects')
+    const subjects = document.querySelector("#subjects");
     header.style = "display: none !important;";
     headerSmall.style = "display: flex;";
     subjects.style = "display: flex !important;";
@@ -32,7 +32,7 @@
   function uncollapseHeader() {
     const header = document.querySelector(".header");
     const headerSmall = document.querySelector(".header--collapsed");
-    const subjects = document.querySelector('#subjects')
+    const subjects = document.querySelector("#subjects");
     header.style = "display: flex;";
     headerSmall.style = "display: none !important;";
     subjects.style = "display: none !important;";
@@ -73,14 +73,14 @@
       min-height: 100vh;
     }
     h1 {
-    font-size: 280%;
-  }
-  h2 {
-    font-size: 140%;
-  }
-  p {
+      font-size: 280%;
+    }
+    h2 {
+      font-size: 140%;
+    }
+    p {
       font-size: 80%;
-  }
+    }
   }
 </style>
 
@@ -91,20 +91,14 @@
   <h1 class="mt-3 mt-md-5 mb-3 text-center">
     {#if username === 'IAmAtSchool'}
       Witaj w szkole!
-      {:else}
-      {#if username}
-          {#if isDay}
-          Dzień dobry, {username}!
-          {:else if isEvening}
-          Dobry wieczór, {username}!
-          {:else}
-          Już noc, {username}!
-          {/if}
-          {:else}
-          Witaj, przyjacielu!
-      {/if}
-    {/if}
-    
+    {:else if username}
+      {#if isDay}
+        Dzień dobry, {username}!
+      {:else if isEvening}
+        Dobry wieczór, {username}!
+      {:else}Już noc, {username}!{/if}
+    {:else}Witaj, przyjacielu!{/if}
+
   </h1>
   <p class="text-center">
     Dobrze Cię widzieć. Zobacz ostatnio dodane materiały.
@@ -169,19 +163,13 @@
   <h2 class="text-center m-0 mr-3">
     {#if username === 'IAmAtSchool'}
       Witaj w szkole!
-      {:else}
-      {#if username}
-          {#if isDay}
-          Dzień dobry, {username}!
-          {:else if isEvening}
-          Dobry wieczór, {username}!
-          {:else}
-          Już noc, {username}!
-          {/if}
-          {:else}
-          Witaj, przyjacielu!
-      {/if}
-    {/if}
+    {:else if username}
+      {#if isDay}
+        Dzień dobry, {username}!
+      {:else if isEvening}
+        Dobry wieczór, {username}!
+      {:else}Już noc, {username}!{/if}
+    {:else}Witaj, przyjacielu!{/if}
   </h2>
   <span
     on:click={uncollapseHeader}
@@ -193,7 +181,7 @@
 </div>
 
 <div style="display: none !important;" id="subjects">
-    <Subjects {data}/>
+  <Subjects {data} />
 </div>
 
 <Viewer {filenameSelectedToPreview} {titleSelectedToPreview} />
