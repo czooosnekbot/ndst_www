@@ -11,5 +11,5 @@
 {:else if username}
   {#if isDay}
     Dzień dobry, {username}!
-  {:else if isEvening}Dobry wieczór, {username}!{:else}Już noc, {username}!{/if}
+  {:else if isEvening}Dobry wieczór, {username}!{:else}Dobrej nocy, {username}!{/if}
 {:else}Witaj, przyjacielu!{/if}

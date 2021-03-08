@@ -1,23 +1,11 @@
 <script>
-  export let filenameSelectedToPreview;
-  $: filenameSelectedToPreview;
-  export let titleSelectedToPreview;
-  $: titleSelectedToPreview;
+  import { files } from '../stores.js';
 
   export let data;
   import Viewer from "../Tools/Viewer.svelte";
   import Subjects from "../UI/Subjects.svelte";
   import UsernameBlock from "../Tools/UsernameBlock.svelte";
   import LatestMaterials from "../Tools/LatestMaterials.svelte";
-
-  function getPreview(e) {
-    const infoBar = document.querySelector(".material--collapsed");
-    filenameSelectedToPreview = e.target.id;
-    titleSelectedToPreview = document.getElementById(`${e.target.id}--title`)
-      .textContent;
-    infoBar.style = "display: block !important;";
-    collapseHeader();
-  }
 
   function collapseHeader(e) {
     const header = document.querySelector(".header");
@@ -30,22 +18,25 @@
   }
 
   function uncollapseHeader() {
+    const previewBox = document.querySelector('#file-preview');
     const header = document.querySelector(".header");
     const headerSmall = document.querySelector(".header--collapsed");
     const subjects = document.querySelector("#subjects");
+    previewBox.classList.toggle('d-none', true);
     header.style = "display: flex;";
     headerSmall.style = "display: none !important;";
     subjects.style = "display: none !important;";
   }
 
   function copyUrl(e) {
+    const desiredURL = document.querySelector('iframe').src;
     navigator.clipboard.writeText(
-      `https://cdn.czooosnek.cloud/files/${filenameSelectedToPreview}`
+        desiredURL
     );
-    e.target.className = "badge badge-success ml-1";
+    e.target.className = "badge badge-success ml-2";
     e.target.textContent = "Skopiowano!";
     setTimeout(() => {
-      e.target.className = "badge badge-info ml-1";
+      e.target.className = "badge badge-info ml-2";
       e.target.textContent = "Kopiuj link";
     }, 500);
   }
@@ -97,22 +88,25 @@
       margin-top: 5rem;
     }
   }
+
+  .badge-info {
+    cursor: pointer;
+  }
 </style>
 
 <header
   class="header h-100 d-flex flex-column justify-content-center
   align-items-center">
-
-  <h1 class="mt-3 mt-md-5 mb-3 text-center">
+  <img src="./education.png" width="100" alt>
+  <h1 class="mt-3 mt-md-4 mb-3 text-center">
     <UsernameBlock />
   </h1>
   <p class="text-center">
     Dobrze Cię widzieć. Zobacz ostatnio dodane materiały.
   </p>
   <div
-    class="row mt-2 mb-5 d-flex justify-content-center align-items-center"
-    id="latest">
-    <LatestMaterials {data} on:click={getPreview} />
+    class="row mt-2 mb-5 w-100 justify-content-center" id="latest">
+    <LatestMaterials {data} />
   </div>
   <span
     on:click={collapseHeader}
@@ -134,8 +128,8 @@
     on:click={uncollapseHeader}
     style="font-size: 100%; border-radius: 8px; cursor: pointer;"
     class="badge badge-warning p-2">
-    <i class="fas fa-arrow-up" />
-    Powrót
+    <i class="fas fa-home"></i>
+    Moje ndst.pl
   </span>
 </div>
 
@@ -144,10 +138,18 @@
   class="text-light material--collapsed py-3 flex-row flex-wrap
   justify-content-center align-items-center">
   <div class="d-flex flex-column align-items-center justify-content-center">
-    <strong class="h4 m-0">{titleSelectedToPreview}</strong>
-    <div class="d-flex flex-row">
-      <small>{filenameSelectedToPreview}</small>
-      <span on:click={copyUrl} class="badge badge-info ml-1">Skopiuj link</span>
+    
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="border-right border-light pr-4">
+        <h4>Właśnie przeglądasz</h4>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center pl-4">
+        <strong class="h4 m-0">{$files.title}</strong>
+        <div class="d-flex flex-row mt-1">
+          <small><i class="far fa-file"></i> {$files.filename}</small>
+          <span on:click={copyUrl} class="badge badge-info ml-2 copy-url">Skopiuj link</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -155,8 +157,7 @@
 <div style="display: none !important;" id="subjects">
   <Subjects
     {data}
-    {filenameSelectedToPreview}
-    {titleSelectedToPreview}
-    on:click={getPreview}
     />
 </div>
+
+<Viewer />

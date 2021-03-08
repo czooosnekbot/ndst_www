@@ -1,5 +1,28 @@
 <script>
   export let data;
+  import { files } from '../stores.js';
+  
+  function getPreview(e) {
+    const infoBar = document.querySelector(".material--collapsed");
+    const previewBox = document.querySelector("#file-preview");
+    files.change({
+      filename: e.target.id,
+      title: document.getElementById(`${e.target.id}--title`).textContent
+    })
+    infoBar.style = "display: block !important;";
+    previewBox.classList.toggle('d-none', false);
+    collapseHeader();
+  }
+
+  function collapseHeader(e) {
+    const header = document.querySelector(".header");
+    const headerSmall = document.querySelector(".header--collapsed");
+    const subjects = document.querySelector("#subjects");
+    header.style = "display: none !important;";
+    headerSmall.style =
+      "position: fixed !important; display: flex; width: 100%; z-index: 9999;";
+    subjects.style = "display: flex !important;";
+  }
 </script>
 
 <style>
@@ -18,7 +41,7 @@
   {#each data as subject}
     {#each subject.materials as material}
       {#if new Date().getTime() - material.createdOn <= 604800000}
-        <div class="col-8 col-md-4 p-1 pl-3 latest-element">
+        <div class="col-8 col-md-3 p-1 pl-3 latest-element">
           {#if material.title.length > 26}
             <strong class="mr-auto m-0">
               {material.title.slice(0, 26).trim()}...
@@ -38,7 +61,7 @@
               <span class="m-0 p-0 mr-1 subject--name">{subject.fullname}</span>
             {/if}
             <span
-              on:click
+              on:click={(e) => getPreview(e)}
               id={material.filename}
               style="cursor: pointer"
               class="badge badge-info cursor-pointer">
