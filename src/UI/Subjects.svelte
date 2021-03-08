@@ -10,10 +10,10 @@
   $: titleSelectedToPreview;
 
   function getPreview(e) {
-    const infoBar = document.querySelector('.material--collapsed');
+    const materialSmall = document.querySelector(".material--collapsed");
     filenameSelectedToPreview = e.target.id;
     titleSelectedToPreview = document.getElementById(`${e.target.id}--title`).textContent;
-    infoBar.style = 'display: block !important;'
+    materialSmall.classList.toggle('d-none', false);
   }
 
   function filterMaterialsBySubject(e) {

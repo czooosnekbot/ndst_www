@@ -3,14 +3,14 @@
   import { files } from '../stores.js';
 
   function getPreview(e) {
-    const infoBar = document.querySelector(".material--collapsed");
     const previewBox = document.querySelector('#file-preview');
+    const materialSmall = document.querySelector(".material--collapsed");
     files.change({
       filename: e.target.id,
       title: document.getElementById(`${e.target.id}--title`).textContent
     })
-    infoBar.style = "display: block !important;";
     previewBox.classList.toggle('d-none', false);
+    materialSmall.classList.toggle('d-none', false);
     console.log(files);
     collapseHeader();
   }

@@ -22,10 +22,12 @@
     const header = document.querySelector(".header");
     const headerSmall = document.querySelector(".header--collapsed");
     const subjects = document.querySelector("#subjects");
+    const materialSmall = document.querySelector(".material--collapsed");
     previewBox.classList.toggle('d-none', true);
     header.style = "display: flex;";
     headerSmall.style = "display: none !important;";
     subjects.style = "display: none !important;";
+    materialSmall.classList.toggle('d-none', true);
   }
 
   function copyUrl(e) {
@@ -134,7 +136,6 @@
 </div>
 
 <div
-  style="display: none;"
   class="text-light material--collapsed py-3 flex-row flex-wrap
   justify-content-center align-items-center">
   <div class="d-flex flex-column align-items-center justify-content-center">
