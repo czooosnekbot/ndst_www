@@ -39,22 +39,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <div class="d-flex flex-column">
-            <h5 class="modal-title">Cześć. Dobrze, że jesteś!</h5>
-            <small>Widzimy Cię tutaj po raz pierwszy...</small>
+            <h5 class="modal-title">Cześć,</h5>
+            <small>ndst.online powraca po przerwie, przywracając świetne narzędzia edukacyjne, tak bardzo potrzebne w czasach nauki zdalnej.</small>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="exampleInputEmail1">Podaj nam swoje imię</label>
+            <label for="exampleInputEmail1">Na początek...</label>
             <input
               type="text"
               class="form-control pl-2"
               id="nameInput"
               aria-describedby="emailHelp"
-              placeholder="Jan" />
+              placeholder="Jak masz na imię?" />
             <small id="emailHelp" class="form-text text-muted">
-              Będzie przechowywane w pamięci urządzenia i posłuży do
-              indywidualnej personalizacji strony.
+              Będzie przechowywane w pamięci urządzenia i posłuży do indywidualnej personalizacji strony.
             </small>
           </div>
         </div>

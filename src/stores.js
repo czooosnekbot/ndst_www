@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 function filesHandler() {
-	const { subscribe, set, update } = writable({filename: undefined, title: undefined});
+	const { subscribe, set, update } = writable({filename: '', title: ''});
 
 	return {
 		subscribe,

@@ -36,10 +36,10 @@
         desiredURL
     );
     e.target.className = "badge badge-success ml-2";
-    e.target.textContent = "Skopiowano!";
+    e.target.innerHTML = '<i class="far fa-check-circle"></i> Skopiowano!';
     setTimeout(() => {
       e.target.className = "badge badge-info ml-2";
-      e.target.textContent = "Kopiuj link";
+      e.target.innerHTML = '<i class="far fa-copy"></i> Kopiuj link';
     }, 500);
   }
 </script>
@@ -136,19 +136,19 @@
 </div>
 
 <div
-  class="text-light material--collapsed py-3 flex-row flex-wrap
-  justify-content-center align-items-center">
+  class="text-light material--collapsed py-3 flex-row flex-wrap justify-content-center align-items-center d-none">
   <div class="d-flex flex-column align-items-center justify-content-center">
     
     <div class="d-flex justify-content-center align-items-center">
-      <div class="border-right border-light pr-4">
+      <div class="border-right border-light pr-4 d-none d-md-block">
         <h4>Właśnie przeglądasz</h4>
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center pl-4">
         <strong class="h4 m-0">{$files.title}</strong>
         <div class="d-flex flex-row mt-1">
           <small><i class="far fa-file"></i> {$files.filename}</small>
-          <span on:click={copyUrl} class="badge badge-info ml-2 copy-url">Skopiuj link</span>
+          <span on:click={copyUrl} class="badge badge-info ml-2 copy-url"><i class="far fa-copy"></i> Skopiuj link</span>
+          {#if $files.filename.split('.')[1] == 'pdf'}<a href="https://cdn.czooosnek.cloud/files/{$files.filename}" download class="text-white badge badge-danger ml-2"><i class="fas fa-arrow-down"></i> Pobierz</a>{/if}
         </div>
       </div>
     </div>
