@@ -35,7 +35,7 @@
 
   function filterItems() {
     const searchBar = document.querySelector('#search');
-    const keyword = searchBar.value;
+    const keyword = searchBar.value.toLowerCase();
     const articles = document.querySelectorAll('article');
     articles.forEach(article => {
       let containsKeyword = false;

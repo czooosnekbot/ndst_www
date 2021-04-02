@@ -30,7 +30,7 @@
   {#each data as subject}
     {#each subject.materials as material}
       <article
-        class="{subject.id} col-10 col-md-3 material m-1 p-1 w-100"
+        class="{subject.id} col-10 col-md-3 material m-1 p-1 w-100 flex-column"
         style=""
         id={material.filename}
         data-keywords={material.keywords}

@@ -2,7 +2,7 @@
   import Body from "./Body.svelte";
 
   let data;
-  fetch("http://localhost:2000/ndst")
+  fetch("https://teb.ndst.pl/api/")
     .then(response => response.json())
     .then(response => (data = response));
 </script>

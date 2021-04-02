@@ -47,7 +47,9 @@
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Podkova&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
-
+  .header {
+    min-height: 100vh;
+  }
   .header,
   .header--collapsed {
     background: #9b2e35;
@@ -94,11 +96,14 @@
   .badge-info {
     cursor: pointer;
   }
+
+  .subjects {
+    min-height: 100%c;
+  }
 </style>
 
 <header
-  class="header h-100 d-flex flex-column justify-content-center
-  align-items-center">
+  class="header h-auto d-flex flex-column justify-content-center py-5 py-md-3 align-items-center">
   <img src="./education.png" width="100" alt>
   <h1 class="mt-3 mt-md-4 mb-3 text-center">
     <UsernameBlock />
@@ -155,7 +160,7 @@
   </div>
 </div>
 
-<div style="display: none !important;" id="subjects">
+<div class="subjects" style="display: none !important;" id="subjects">
   <Subjects
     {data}
     />
